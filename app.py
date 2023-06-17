@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flaskwebgui import FlaskUI
 import sqlite3
 import os
+
 
 #obtener ruta actual
 cwd = os.getcwd()
@@ -9,6 +11,8 @@ cwd = os.getcwd()
 db = SQLAlchemy()
 #Crea la app con flask
 app = Flask(__name__)
+#Crear la ui
+ui = FlaskUI(app)
 #Configurar la base con sqlite
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{cwd}/database/tasks.db'
 #inicializar la app con la extension
@@ -65,4 +69,5 @@ def delete(id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
+    FlaskUI(app=app, server="flask", width=500, height=700,).run()
