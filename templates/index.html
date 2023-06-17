@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <link rel="shortcut icon" href="../static/img/to-do-list.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <h1 class="display-4 text-center mt-4 title">To do list</h1>
+
+        <div class="row">
+            <div class="col-md-4 offset-md-4 my-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <form action="/create-task" method="POST">
+                            <div class="form-group">
+                                <input type="text" placeholder ="Tarea" name="content" id="" class="form-control" autofocus>
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-block">
+                                Añadir tarea
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for task in tasks %}
+                            <li class="list-group-item">
+                                <span class="{% if task.done %} done {% endif %}">{{ task.content }}</span>
+                                <a href="/done/{{task.id}}" class="btn {% if task.done %} btn-warning {%else%} btn-success {% endif %} btn-sm">{% if task.done %} Re abrir {%else%} Listo {% endif %} </a>
+                                <a href="/delete/{{task.id}}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

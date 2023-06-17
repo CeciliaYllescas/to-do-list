@@ -1,0 +1,14 @@
+body{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgb(248, 238, 242) 0%, rgb(231, 179, 231) 100%);
+    color: #000;
+}
+.title{
+    font-family: 'Dancing Script', cursive;
+    color: #000;
+}
+
+.done{
+    text-decoration: line-through;
+    color: #cfcfcf;
+}
